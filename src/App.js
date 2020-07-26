@@ -1,26 +1,25 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import { useEffect } from "react";
+import handleInitialData from "./actions";
+import { useDispatch, useSelector } from "react-redux";
+import Login from "./components/Login";
+import Question from "./components/Question";
+import  LoadingBar from "react-redux-loading";
+import Dashboard from "./components/Dashboard";
 
-function App() {
+const App = (props) => {
+  const dispatch = useDispatch();
+  const authedUser = useSelector(state=> state.authedUser)
+  useEffect(() => {
+    dispatch(handleInitialData());
+  }, [dispatch]);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <LoadingBar />
+      {authedUser !== null ? <Dashboard /> : ""}
     </div>
   );
-}
+};
 
 export default App;
