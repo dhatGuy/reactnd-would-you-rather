@@ -1,6 +1,8 @@
-import React from "react";
-import { useSelector } from "react-redux";
+import React, { useState } from "react";
+import { useSelector, useDispatch } from "react-redux";
 import styled from "styled-components";
+import { handleSaveAnswer } from "../actions/questions";
+import { handleSaveAnswerToUser } from "../actions/users";
 
 const QuestionCard = styled.div`
   margin: 5px;
@@ -49,31 +51,73 @@ const Button = styled.button`
   align-self: center;
 `;
 
-const Question = ({ id, author, avatarURL, optionOne, optionTwo }) => {
+const Question = ({ match }) => {
+  const users = useSelector((state) => state.users);
+  const authedUser = useSelector((state) => state.authedUser);
+  const questions = useSelector((state) => state.questions);
+  const dispatch = useDispatch()
+  const [value, setValue] = useState("");
+  const { id } = match.params;
+
   const handleSubmit = (e) => {
     e.preventDefault();
+    dispatch(handleSaveAnswer({
+      authedUser,
+      qid: id,
+      answer: value,
+    }))
+    dispatch(handleSaveAnswerToUser({
+      authedUser,
+      qid: id,
+      answer: value,
+    }))
+  };
+
+  const handleChange = (e) => {
+    setValue(e.target.value);
   };
   return (
-    <QuestionCard>
-      <QuestionHeader>{author} asks:</QuestionHeader>
-      <Main>
-        <Img src={avatarURL} alt="" />
-        <QuestionDiv>
-          Would You Rather...
-          <Form onSubmit={handleSubmit}>
-            <label htmlFor="option1">
-              <input type="radio" name="option" id="optionOne" />
-              {optionTwo}...
-            </label>
-            <label htmlFor="option2">
-              <input type="radio" name="option" id="optionTwo" />
-              {optionOne}...
-            </label>
-            <Button type="submit">Submit</Button>
-          </Form>
-        </QuestionDiv>
-      </Main>
-    </QuestionCard>
+    <>
+      {questions[id] === undefined ? (
+        <div>Question doesnt not exit</div>
+      ) : (
+        // null
+        <QuestionCard>
+          <QuestionHeader>{users[questions[id].author].name} asks:</QuestionHeader>
+          <Main>
+            <Img src={`../${users[questions[id].author].avatarURL}`} alt="" />
+            <QuestionDiv>
+              Would You Rather...
+              <Form onSubmit={handleSubmit}>
+                <label htmlFor="optionOne">
+                  <input
+                    type="radio"
+                    name="option"
+                    id="optionOne"
+                    value="optionOne"
+                    onChange={handleChange}
+                  />
+                  {questions[id].optionTwo.text}...
+                </label>
+                <label htmlFor="optionTwo">
+                  <input
+                    type="radio"
+                    name="option"
+                    id="optionTwo"
+                    value="optionTwo"
+                    onChange={handleChange}
+                  />
+                  {questions[id].optionOne.text}...
+                </label>
+                <Button type="submit" disabled={value === ""}>
+                  Submit
+                </Button>
+              </Form>
+            </QuestionDiv>
+          </Main>
+        </QuestionCard>
+      )}
+    </>
   );
 };
 

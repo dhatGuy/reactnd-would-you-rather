@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import styled from "styled-components";
 import { setAuthedUser } from "../actions/authedUser";
+import { Link } from "react-router-dom";
 
 const User = styled.div``;
 const Img = styled.img`
@@ -51,9 +52,11 @@ const Login = () => {
               );
             })}
           </select>
+          <Link to="/">
           <button disabled={userId === ""} type="submit">
             Login
           </button>
+          </Link>
         </Form>
       </div>
     </>

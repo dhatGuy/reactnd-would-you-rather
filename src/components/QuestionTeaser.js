@@ -1,5 +1,7 @@
 import React from "react";
 import styled from "styled-components";
+import { Link } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 const QuestionCard = styled.div`
   margin: 5px;
@@ -17,14 +19,7 @@ const Img = styled.img`
   height: 100px;
 `;
 
-const Form = styled.form`
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  padding-bottom: 5px;
-`;
-
-const QuestionDiv = styled.div`
+const QuestionContainer = styled.div`
   display: flex;
   border-left: 1px solid black;
   flex-direction: column;
@@ -46,24 +41,30 @@ const Button = styled.button`
   padding: 2px 0;
   font-size: 20px;
   align-self: center;
+  cursor: pointer;
 `;
 
-const QuestionTeaser = ({ id, author, avatarURL, optionOne, optionTwo }) => {
-  const handleSubmit = (e) => {
-    e.preventDefault();
-  };
+const QuestionTeaser = ({ id }) => {
+  const questions = useSelector((state) => state.questions);
+  const users = useSelector(state=> state.users)
+  const { author, optionOne } = questions[id];
+  const { avatarURL } = users[author]
+ 
+  
   return (
     <QuestionCard>
-      <QuestionHeader>{author} asks:</QuestionHeader>
+      <QuestionHeader>{users[author].name} asks:</QuestionHeader>
       <Main>
         <Img src={avatarURL} alt="" />
-        <QuestionDiv>
+        <QuestionContainer>
           Would You Rather...
-          <Form onSubmit={handleSubmit}>
-            ...{optionOne}...            
-            <Button type="submit">View Question</Button>
-          </Form>
-        </QuestionDiv>
+          <div >
+            ...{optionOne.text}...
+            <Link to={`/question/${id}`}>
+              <Button type="submit">View Question</Button>
+            </Link>
+          </div>
+        </QuestionContainer>
       </Main>
     </QuestionCard>
   );
