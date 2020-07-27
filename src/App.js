@@ -7,6 +7,7 @@ import Question from "./components/Question";
 import LoadingBar from "react-redux-loading";
 import Dashboard from "./components/Dashboard";
 import { BrowserRouter as Router, Route, Redirect } from "react-router-dom";
+import Nav from "./components/Nav";
 
 const App = (props) => {
   const dispatch = useDispatch();
@@ -21,18 +22,19 @@ const App = (props) => {
     dispatch(handleInitialData());
   }, [dispatch]);
 
-  console.log(state);
   return (
     <div>
       <LoadingBar />
       <Router>
-      {state.users !== {} || state.questions !== {} ? (
+      {state.authedUser !== null ? (
         <>
-          <Route path="/login" component={Login} />
+        <Nav />
           <Route path="/" exact component={Dashboard} />
           <Route path="/question/:id" component={Question} />
           </>
-          ) : <Redirect to="/login" />}
+          ) : <Route path="/login" component={Login} /> 
+          }
+          
           </Router>
     </div>
   );

@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import styled from "styled-components";
 import { setAuthedUser } from "../actions/authedUser";
-import { Link } from "react-router-dom";
+import { Link, Redirect } from "react-router-dom";
 
 const User = styled.div``;
 const Img = styled.img`
@@ -19,23 +19,28 @@ const Form = styled.form`
 const Login = () => {
   const users = useSelector((state) => state.users);
   const [userId, setUserId] = useState("");
+  const [toHome, setToHome] = useState(false)
   const dispatch = useDispatch();
 
   const handleChange = (e) => {
-    setUserId(e.target.value);
+    setUserId(()=>e.target.value);
+    console.log(e.target.value)
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
+  const onSubmit = (e) => {
     dispatch(setAuthedUser(userId));
+    console.log(users[userId])
+    setToHome(true)
   };
+
+  if(toHome) return <Redirect to="/" />
 
   return (
     <>
       <div className="header">Welcome</div>
       <div className="login-container">
         <div className="login-header">Login As</div>
-        <Form className="login-form" onSubmit={handleSubmit}>
+        <form className="login-form">
           <Img src={userId === "" ? "" : users[userId].avatarURL} />
           <select
             value={userId}
@@ -53,11 +58,11 @@ const Login = () => {
             })}
           </select>
           <Link to="/">
-          <button disabled={userId === ""} type="submit">
+          <button onClick={onSubmit} disabled={userId === ""} type="submit">
             Login
           </button>
           </Link>
-        </Form>
+        </form>
       </div>
     </>
   );

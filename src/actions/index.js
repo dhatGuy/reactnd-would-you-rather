@@ -6,12 +6,12 @@ import { showLoading, hideLoading } from "react-redux-loading";
 
 const handleInitialData = () => {
   return async dispatch => {
+    // dispatch(setAuthedUser("johndoe"))
+    dispatch(showLoading())
     const users = await _getUsers()
     const questions = await _getQuestions()
-    dispatch(showLoading())
-    dispatch(receiveUsers(users))
     dispatch(receiveQuestions(questions))
-    dispatch(setAuthedUser("johndoe"))
+    dispatch(receiveUsers(users))
     dispatch(hideLoading())
   }
 }
