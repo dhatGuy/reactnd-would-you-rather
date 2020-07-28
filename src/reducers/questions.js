@@ -1,4 +1,5 @@
-import { RECEIVE_QUESTIONS, SAVE_ANSWER } from "../actions/questions";
+import { RECEIVE_QUESTIONS, SAVE_ANSWER,  } from "../actions/questions";
+import { SAVE_NEW_QUESTION } from "../actions";
 
 const questions = (state={}, action) => {
   switch (action.type) {
@@ -7,6 +8,11 @@ const questions = (state={}, action) => {
         ...state,
         ...action.questions
       }
+      case SAVE_NEW_QUESTION:
+        return {
+            ...state,
+            [action.question.id]: action.question
+        }
       case SAVE_ANSWER:
         return {
           ...state,

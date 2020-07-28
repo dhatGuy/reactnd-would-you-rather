@@ -1,4 +1,5 @@
-import { _saveQuestionAnswer } from "../utils/_DATA";
+import { _saveQuestionAnswer, _saveQuestion } from "../utils/_DATA";
+import { showLoading, hideLoading } from "react-redux-loading";
 
 export const RECEIVE_QUESTIONS = "RECEIVE_QUESTIONS";
 
@@ -18,10 +19,12 @@ export const saveAnswer = ({ authedUser, qid, answer }) => ({
   answer,
 });
 
+
+
+
 export const handleSaveAnswer = (info) => {
-  return (dispatch) => {
-    return _saveQuestionAnswer(info).then((data) => {
-      dispatch(saveAnswer(info));
-    });
+  return async (dispatch) => {
+    await _saveQuestionAnswer(info);
+    dispatch(saveAnswer(info));
   };
 };

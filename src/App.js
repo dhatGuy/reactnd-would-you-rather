@@ -8,6 +8,7 @@ import LoadingBar from "react-redux-loading";
 import Dashboard from "./components/Dashboard";
 import { BrowserRouter as Router, Route, Redirect } from "react-router-dom";
 import Nav from "./components/Nav";
+import NewQuestion from "./components/NewQuestion";
 
 const App = (props) => {
   const dispatch = useDispatch();
@@ -15,8 +16,8 @@ const App = (props) => {
     return {
       authedUser: state.authedUser,
       questions: state.questions,
-      users: state.users
-    }
+      users: state.users,
+    };
   });
   useEffect(() => {
     dispatch(handleInitialData());
@@ -26,16 +27,21 @@ const App = (props) => {
     <div>
       <LoadingBar />
       <Router>
-      {state.authedUser !== null ? (
-        <>
-        <Nav />
-          <Route path="/" exact component={Dashboard} />
-          <Route path="/question/:id" component={Question} />
+        {state.authedUser !== null ? (
+          <>
+            <Nav />
+            <Route path="/login" component={Login} />
+            <Route path="/" exact component={Dashboard} />
+            <Route path="/new" component={NewQuestion} />
+            <Route path="/question/:id" component={Question} />
           </>
-          ) : <Route path="/login" component={Login} /> 
-          }
-          
-          </Router>
+        ) : (
+          <>
+            <Login />
+            {/* <Redirect to="/login" /> */}
+          </>
+        )}
+      </Router>
     </div>
   );
 };

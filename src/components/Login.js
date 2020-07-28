@@ -40,7 +40,7 @@ const Login = () => {
       <div className="header">Welcome</div>
       <div className="login-container">
         <div className="login-header">Login As</div>
-        <form className="login-form">
+        <Form className="login-form">
           <Img src={userId === "" ? "" : users[userId].avatarURL} />
           <select
             value={userId}
@@ -62,7 +62,7 @@ const Login = () => {
             Login
           </button>
           </Link>
-        </form>
+        </Form>
       </div>
     </>
   );
