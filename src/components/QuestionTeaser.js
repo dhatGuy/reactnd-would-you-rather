@@ -45,12 +45,17 @@ const Button = styled.button`
 `;
 
 const QuestionTeaser = ({ id }) => {
+  const isEmpty = (obj) => Object.keys(obj).length === 0;
   const questions = useSelector((state) => state.questions);
-  const users = useSelector(state=> state.users)
+  const users = useSelector((state) => state.users);
+  const authedUser = useSelector(state=> state.authedUser)
+
+  if (isEmpty(users) || isEmpty(questions)) return null;
+const isAnswered = questions[id].optionOne.votes.includes(authedUser) ||
+questions[id].optionTwo.votes.includes(authedUser)
   const { author, optionOne } = questions[id];
-  const { avatarURL } = users[author]
- 
-  
+  const { avatarURL } = users[author];
+
   return (
     <QuestionCard>
       <QuestionHeader>{users[author].name} asks:</QuestionHeader>
@@ -58,10 +63,10 @@ const QuestionTeaser = ({ id }) => {
         <Img src={avatarURL} alt="" />
         <QuestionContainer>
           Would You Rather...
-          <div >
+          <div>
             ...{optionOne.text}...
             <Link to={`/question/${id}`}>
-              <Button type="submit">View Question</Button>
+              <Button type="submit">{isAnswered ? "Results" : "View"}</Button>
             </Link>
           </div>
         </QuestionContainer>

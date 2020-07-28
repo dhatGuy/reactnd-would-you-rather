@@ -1,4 +1,4 @@
-import { receiveUsers, saveQuestionToUser } from "./users";
+import { receiveUsers } from "./users";
 import { _getUsers, _getQuestions, _saveQuestion } from "../utils/_DATA";
 import { receiveQuestions } from "./questions";
 import { setAuthedUser } from "./authedUser";
@@ -6,7 +6,6 @@ import { showLoading, hideLoading } from "react-redux-loading";
 
 const handleInitialData = () => {
   return async dispatch => {
-    dispatch(setAuthedUser("johndoe"))
     dispatch(showLoading())
     const users = await _getUsers()
     const questions = await _getQuestions()
@@ -27,7 +26,6 @@ export const handleSaveNewQuestion = (question) => {
     dispatch(showLoading());
     const formattedQuestion = await _saveQuestion(question);
     dispatch(saveNewQuestion(formattedQuestion));
-    // dispatch(saveQuestionToUser(formattedQuestion))
     dispatch(hideLoading());
   };
 };

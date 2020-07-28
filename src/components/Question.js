@@ -1,10 +1,10 @@
-import React, { useState } from "react";
-import { useSelector, useDispatch } from "react-redux";
+import React from "react";
+import { useSelector } from "react-redux";
 import styled from "styled-components";
-import { handleSaveAnswer } from "../actions/questions";
-import { handleSaveAnswerToUser } from "../actions/users";
+import QuestionCard from "./QuestionCard";
+import ResultCard from "./ResultCard";
 
-const QuestionCard = styled.div`
+const QuestionContainer = styled.div`
   margin: 5px;
   background: #397298;
   color: #fff;
@@ -15,16 +15,13 @@ const QuestionHeader = styled.header`
   /* margin: 10px 0; */
 `;
 
-const Img = styled.img`
+const ImgWrapper = styled.div`
   width: 100px;
   height: 100px;
-`;
 
-const Form = styled.form`
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  padding-bottom: 5px;
+  img {
+    width: 100%;
+  }
 `;
 
 const QuestionDiv = styled.div`
@@ -38,84 +35,50 @@ const QuestionDiv = styled.div`
 const Main = styled.main`
   display: flex;
   justify-content: space-between;
-  align-items: flex-end;
-  border-top: 1px solid black;
-`;
-
-const Button = styled.button`
-  width: 98%;
-  background: #8ac4ff;
-  border: none;
-  padding: 2px 0;
-  font-size: 20px;
-  align-self: center;
+  align-items: center;
 `;
 
 const Question = ({ match }) => {
+  const isEmpty = (obj) => Object.keys(obj).length === 0;
   const users = useSelector((state) => state.users);
   const authedUser = useSelector((state) => state.authedUser);
   const questions = useSelector((state) => state.questions);
-  const dispatch = useDispatch()
-  const [value, setValue] = useState("");
   const { id } = match.params;
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    dispatch(handleSaveAnswer({
-      authedUser,
-      qid: id,
-      answer: value,
-    }))
-    dispatch(handleSaveAnswerToUser({
-      authedUser,
-      qid: id,
-      answer: value,
-    }))
-  };
+  if (isEmpty(users)) return null;
+  console.log(questions[id].optionTwo.votes, questions[id].optionOne.votes);
 
-  const handleChange = (e) => {
-    setValue(e.target.value);
-  };
   return (
     <>
       {questions[id] === undefined ? (
         <div>Question doesnt not exit</div>
       ) : (
         // null
-        <QuestionCard>
-          <QuestionHeader>{users[questions[id].author].name} asks:</QuestionHeader>
+        <QuestionContainer>
+          <QuestionHeader>
+            {users[questions[id].author].name} asks:
+          </QuestionHeader>
           <Main>
-            <Img src={`../${users[questions[id].author].avatarURL}`} alt="" />
+            <ImgWrapper>
+              <img src={`../${users[questions[id].author].avatarURL}`} alt="" />
+            </ImgWrapper>
             <QuestionDiv>
-              Would You Rather...
-              <Form onSubmit={handleSubmit}>
-                <label htmlFor="optionOne">
-                  <input
-                    type="radio"
-                    name="option"
-                    id="optionOne"
-                    value="optionOne"
-                    onChange={handleChange}
-                  />
-                  {questions[id].optionTwo.text}...
-                </label>
-                <label htmlFor="optionTwo">
-                  <input
-                    type="radio"
-                    name="option"
-                    id="optionTwo"
-                    value="optionTwo"
-                    onChange={handleChange}
-                  />
-                  {questions[id].optionOne.text}...
-                </label>
-                <Button type="submit" disabled={value === ""}>
-                  Submit
-                </Button>
-              </Form>
+              {questions[id].optionOne.votes.includes(authedUser) ||
+              questions[id].optionTwo.votes.includes(authedUser) ? (
+                <ResultCard
+                  optionOne={questions[id].optionOne}
+                  optionTwo={questions[id].optionTwo}
+                />
+              ) : (
+                <QuestionCard
+                  authedUser={authedUser}
+                  id={id}
+                  questions={questions}
+                />
+              )}
             </QuestionDiv>
           </Main>
-        </QuestionCard>
+        </QuestionContainer>
       )}
     </>
   );

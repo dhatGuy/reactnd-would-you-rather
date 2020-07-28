@@ -1,6 +1,7 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 import styled from 'styled-components';
+import { useSelector } from 'react-redux';
 
 const NavBar = styled.div`
   display: flex;
@@ -8,26 +9,54 @@ const NavBar = styled.div`
   list-style: none;
   padding: 10px 5px;
 `
-const NavBarLinks = styled.nav`
+const NavBarRight = styled.nav`
   display: flex;
+  justify-content: center;
+  align-items: center;
+
+  .user-details{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  
+}
 `
+const NavBarLeft = styled.nav`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+` 
+
 const NavBarLink = styled.li`
   margin-left: 5px;
 `
+const Img = styled.img`
+  width: 30px;
+  height: 30px;
+`
+
 const Nav = () => {
+  const authedUser = useSelector(({authedUser, users})=> users[authedUser])
+  
+  if(authedUser === undefined) return null
+  
   return (
     <NavBar>
-      <NavBarLinks className="nav-links">
-        <NavBarLink className="nav-link">
-          <NavLink to="/" exact >Home</NavLink>
+      <NavBarLeft >
+        <NavBarLink >
+          <NavLink activeClassName="active" to="/" exact >Home</NavLink>
         </NavBarLink>
-        <NavBarLink className="nav-link"><NavLink to="/new">Add Question</NavLink></NavBarLink>
-        <NavBarLink className="nav-link">Leaderboard</NavBarLink>
-      </NavBarLinks>
+        <NavBarLink ><NavLink to="/new" activeClassName="active">Add Question</NavLink></NavBarLink>
+        <NavBarLink ><NavLink to="/leaderboard" activeClassName="active">Leaderboard</NavLink></NavBarLink>
+      </NavBarLeft>
 
-      <nav>
-        <li><NavLink to="/login">Logout</NavLink></li>
-      </nav>
+      <NavBarRight>
+        <li className="user-details">
+          <Img src={authedUser.avatarURL} alt={authedUser.id} title={authedUser.name}/>
+          <span>{authedUser.name}</span>
+        </li>
+        <NavBarLink><NavLink to="/login">Logout</NavLink></NavBarLink>
+      </NavBarRight>
     </NavBar>
   )
 }

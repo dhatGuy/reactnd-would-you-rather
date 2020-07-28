@@ -1,14 +1,16 @@
 import React from "react";
 import { useEffect } from "react";
-import handleInitialData from "./actions";
+import handleInitialData from "../actions";
 import { useDispatch, useSelector } from "react-redux";
-import Login from "./components/Login";
-import Question from "./components/Question";
+import Login from "./Login";
+import Question from "./Question";
 import LoadingBar from "react-redux-loading";
-import Dashboard from "./components/Dashboard";
+import Dashboard from "./Dashboard";
 import { BrowserRouter as Router, Route, Redirect } from "react-router-dom";
-import Nav from "./components/Nav";
-import NewQuestion from "./components/NewQuestion";
+import Nav from "./Nav";
+import NewQuestion from "./NewQuestion";
+import GlobalStyle from "../GlobalStyle";
+import Leaderboard from "./Leaderboard";
 
 const App = (props) => {
   const dispatch = useDispatch();
@@ -25,11 +27,13 @@ const App = (props) => {
 
   return (
     <div>
+      <GlobalStyle />
       <LoadingBar />
       <Router>
         {state.authedUser !== null ? (
           <>
             <Nav />
+            <Route path="/leaderboard" component={Leaderboard} />
             <Route path="/login" component={Login} />
             <Route path="/" exact component={Dashboard} />
             <Route path="/new" component={NewQuestion} />
@@ -38,7 +42,6 @@ const App = (props) => {
         ) : (
           <>
             <Login />
-            {/* <Redirect to="/login" /> */}
           </>
         )}
       </Router>

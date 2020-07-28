@@ -23,7 +23,7 @@ const Login = () => {
   const dispatch = useDispatch();
 
   const handleChange = (e) => {
-    setUserId(()=>e.target.value);
+    setUserId(e.target.value);
     console.log(e.target.value)
   };
 
@@ -41,7 +41,7 @@ const Login = () => {
       <div className="login-container">
         <div className="login-header">Login As</div>
         <Form className="login-form">
-          <Img src={userId === "" ? "" : users[userId].avatarURL} />
+          <Img src={userId === "" ? "" : "./." + users[userId].avatarURL} />
           <select
             value={userId}
             onChange={handleChange}
