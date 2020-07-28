@@ -27,7 +27,7 @@ export const handleSaveNewQuestion = (question) => {
     dispatch(showLoading());
     const formattedQuestion = await _saveQuestion(question);
     dispatch(saveNewQuestion(formattedQuestion));
-    dispatch(saveQuestionToUser(formattedQuestion))
+    // dispatch(saveQuestionToUser(formattedQuestion))
     dispatch(hideLoading());
   };
 };

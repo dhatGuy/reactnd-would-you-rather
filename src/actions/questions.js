@@ -19,9 +19,6 @@ export const saveAnswer = ({ authedUser, qid, answer }) => ({
   answer,
 });
 
-
-
-
 export const handleSaveAnswer = (info) => {
   return async (dispatch) => {
     await _saveQuestionAnswer(info);

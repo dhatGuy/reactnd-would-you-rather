@@ -1,21 +1,34 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { NavLink } from 'react-router-dom';
+import styled from 'styled-components';
 
+const NavBar = styled.div`
+  display: flex;
+  justify-content: space-between;
+  list-style: none;
+  padding: 10px 5px;
+`
+const NavBarLinks = styled.nav`
+  display: flex;
+`
+const NavBarLink = styled.li`
+  margin-left: 5px;
+`
 const Nav = () => {
   return (
-    <div className="nav">
-      <nav className="nav-links">
-        <li className="nav-link">
+    <NavBar>
+      <NavBarLinks className="nav-links">
+        <NavBarLink className="nav-link">
           <NavLink to="/" exact >Home</NavLink>
-        </li>
-        <li className="nav-link"><NavLink to="/new">Add Question</NavLink></li>
-        <li className="nav-link">Leaderboard</li>
-      </nav>
+        </NavBarLink>
+        <NavBarLink className="nav-link"><NavLink to="/new">Add Question</NavLink></NavBarLink>
+        <NavBarLink className="nav-link">Leaderboard</NavBarLink>
+      </NavBarLinks>
 
       <nav>
         <li><NavLink to="/login">Logout</NavLink></li>
       </nav>
-    </div>
+    </NavBar>
   )
 }
 

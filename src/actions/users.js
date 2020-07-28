@@ -19,20 +19,6 @@ export const receiveUsers = (users) => {
   }
 }
 
-export const SAVE_QUESTION_TO_USER = 'SAVE_QUESTION_TO_USER';
-
-export function saveQuestionToUser(question) {
-  return {
-    type: SAVE_QUESTION_TO_USER,
-    question
-  }
-}
-
-const handleSaveQuestionToUser = () => {
-  return dispatch=> {
-    
-  }
-}
 export const handleSaveAnswerToUser = (data) => {
   return async (dispatch) => {
     await _saveQuestionAnswer(data);

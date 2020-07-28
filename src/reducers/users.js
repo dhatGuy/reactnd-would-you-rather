@@ -1,4 +1,4 @@
-import { RECEIVE_USERS, SAVE_ANSWER_TO_USER, SAVE_QUESTION_TO_USER } from "../actions/users";
+import { RECEIVE_USERS, SAVE_ANSWER_TO_USER } from "../actions/users";
 import { SAVE_NEW_QUESTION } from "../actions";
 
 export const users = (state = {}, action) => {
@@ -21,7 +21,6 @@ export const users = (state = {}, action) => {
       };
       case SAVE_NEW_QUESTION:
         const {author, id} = action.question
-        console.log(state[author])
         return {
           ...state,
         [author]: {
