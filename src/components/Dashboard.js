@@ -5,11 +5,13 @@ import "react-tabs/style/react-tabs.css";
 import QuestionTeaser from "./QuestionTeaser";
 
 const Dashboard = (props) => {
+  const isEmpty = (obj) => Object.keys(obj).length === 0
   const authedUser = useSelector((state) => state.authedUser);
   const questions = useSelector((state) => state.questions);
   const allQuestions = Object.keys(questions).sort((a, b) => {
     return questions[b].timestamp - questions[a].timestamp;
   });
+
   const answered = allQuestions.filter((que) =>
     [
       ...questions[que].optionOne.votes,
@@ -26,6 +28,8 @@ const Dashboard = (props) => {
       ? null
       : questions[que]
   );
+
+    if(isEmpty(questions)) return null
 
   return (
     <div>

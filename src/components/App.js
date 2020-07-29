@@ -1,6 +1,6 @@
-import React, {useEffect} from "react";
+import React, { useEffect } from "react";
 import handleInitialData from "../actions";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import Login from "./Login";
 import Question from "./Question";
 import LoadingBar from "react-redux-loading";
@@ -11,15 +11,9 @@ import NewQuestion from "./NewQuestion";
 import GlobalStyle from "../GlobalStyle";
 import Leaderboard from "./Leaderboard";
 
-const App = (props) => {
+const App = () => {
   const dispatch = useDispatch();
-  const state = useSelector((state) => {
-    return {
-      authedUser: state.authedUser,
-      questions: state.questions,
-      users: state.users,
-    };
-  });
+  const authedUser = localStorage.getItem("authedUser");
   useEffect(() => {
     dispatch(handleInitialData());
   }, [dispatch]);
@@ -29,18 +23,20 @@ const App = (props) => {
       <GlobalStyle />
       <LoadingBar />
       <Router>
-        {state.authedUser !== null ? (
+        {authedUser === null || authedUser === "null" ? (
           <>
-            <Nav />
-            <Route path="/leaderboard" component={Leaderboard} />
+            {/* <Login /> */}
             <Route path="/login" component={Login} />
-            <Route path="/" exact component={Dashboard} />
-            <Route path="/new" component={NewQuestion} />
-            <Route path="/question/:id" component={Question} />
+            <Redirect to="/login" />
           </>
         ) : (
           <>
-            <Login />
+            <Nav />
+            <Route path="/login" component={Login} />
+            <Route path="/leaderboard" component={Leaderboard} />
+            <Route path="/" exact component={Dashboard} />
+            <Route path="/new" component={NewQuestion} />
+            <Route path="/question/:id" component={Question} />
           </>
         )}
       </Router>

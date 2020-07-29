@@ -2,10 +2,10 @@ import React, { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import styled from "styled-components";
 import { setAuthedUser } from "../actions/authedUser";
-import { Link, Redirect } from "react-router-dom";
+import { Redirect, useHistory } from "react-router-dom";
 import redux from "../images/redux.svg"
 
-const Header = styled.h6`
+const Header = styled.header`
   text-align: center;
   width: 100%;
   border-bottom: 1px solid black;
@@ -21,8 +21,8 @@ const LoginContainer = styled.div`
   flex-direction: column;
   border: 1px solid black;
 `;
-const LoginHeader = styled.h3`
-`;
+// const LoginHeader = styled.h3`
+// `;
 const Img = styled.img`
   width: 100px;
   height: 100px;
@@ -65,6 +65,8 @@ const Login = () => {
   const [userId, setUserId] = useState("");
   const [toHome, setToHome] = useState(false);
   const dispatch = useDispatch();
+  const history = useHistory()
+  const authedUser = localStorage.getItem("authedUser") === "null" || localStorage.getItem("authedUser") === null
 
   const handleChange = (e) => {
     setUserId(e.target.value);
@@ -73,13 +75,17 @@ const Login = () => {
   const onSubmit = (e) => {
     localStorage.setItem("authedUser", userId)
     dispatch(setAuthedUser(userId))
+    history.push("/")
     setToHome(true);
   };
 
-  if (toHome) return <Redirect to="/" />;
+  console.log(authedUser);
 
   return (
     <>
+    {authedUser === false?
+     <div>You're already logged in</div> 
+     :  
       <LoginContainer>
         <Header>
           Welcome to Would You Rather App
@@ -102,13 +108,12 @@ const Login = () => {
               );
             })}
           </Select>
-          <Link to="/" className="link">
             <Button onClick={onSubmit} disabled={userId === ""} type="submit">
               Login
             </Button>
-          </Link>
         </Form>
       </LoginContainer>
+  }
     </>
   );
 };

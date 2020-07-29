@@ -52,14 +52,13 @@ const Question = ({ match }) => {
       {questions[id] === undefined ? (
         <div>Question doesnt not exit</div>
       ) : (
-        // null
         <QuestionContainer>
           <QuestionHeader>
             {users[questions[id].author].name} asks:
           </QuestionHeader>
           <Main>
             <ImgWrapper>
-              <img src={`../${users[questions[id].author].avatarURL}`} alt="" />
+              <img src={`${users[questions[id].author].avatarURL}`} alt="" />
             </ImgWrapper>
             <QuestionDiv>
               {questions[id].optionOne.votes.includes(authedUser) ||

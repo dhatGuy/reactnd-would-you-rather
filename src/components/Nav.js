@@ -39,7 +39,7 @@ const Nav = () => {
   const authedUser = useSelector(({ authedUser, users }) => users[authedUser]);
   const dispatch = useDispatch();
 
-  if (authedUser === undefined) return null;
+  if (!authedUser) return null;
 
   return (
     <NavBar>
