@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import styled from "styled-components";
 import { setAuthedUser } from "../actions/authedUser";
-import { Redirect, useHistory } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import redux from "../images/redux.svg"
 
 const Header = styled.header`
@@ -54,16 +54,11 @@ const Button = styled.button`
   background-color: #31867d;
   border: none;
 
-  > * {
-  /* color: #31867d !important; */
-
-  }
 `
 
 const Login = () => {
   const users = useSelector((state) => state.users);
   const [userId, setUserId] = useState("");
-  const [toHome, setToHome] = useState(false);
   const dispatch = useDispatch();
   const history = useHistory()
   const authedUser = localStorage.getItem("authedUser") === "null" || localStorage.getItem("authedUser") === null
@@ -76,10 +71,7 @@ const Login = () => {
     localStorage.setItem("authedUser", userId)
     dispatch(setAuthedUser(userId))
     history.push("/")
-    setToHome(true);
   };
-
-  console.log(authedUser);
 
   return (
     <>
