@@ -5,7 +5,11 @@ import Login from "./Login";
 import Question from "./Question";
 import LoadingBar from "react-redux-loading";
 import Dashboard from "./Dashboard";
-import { BrowserRouter as Router, Route, Redirect } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Route,
+  Redirect,
+} from "react-router-dom";
 import Nav from "./Nav";
 import NewQuestion from "./NewQuestion";
 import GlobalStyle from "../GlobalStyle";
@@ -25,8 +29,7 @@ const App = () => {
       <Router>
         {authedUser === null || authedUser === "null" ? (
           <>
-            {/* <Login /> */}
-            <Route path="/login" component={Login} />
+            <Login />
             <Redirect to="/login" />
           </>
         ) : (
