@@ -71,7 +71,11 @@ const Nav = () => {
           <span>{authedUser.name}</span>
         </li>
         <NavBarLink>
-          <NavLink to="/login" onClick={() => dispatch(setAuthedUser(null))}>
+          <NavLink to="/login" onClick={() => 
+            {
+              localStorage.setItem("authedUser", null)
+              dispatch(setAuthedUser(null))
+          }}>
             Logout
           </NavLink>
         </NavBarLink>

@@ -4,9 +4,12 @@ import { receiveQuestions } from "./questions";
 import { setAuthedUser } from "./authedUser";
 import { showLoading, hideLoading } from "react-redux-loading";
 
+const savedUser = localStorage.getItem("authedUser")
 const handleInitialData = () => {
   return async dispatch => {
-    // dispatch(setAuthedUser('johndoe'))
+    if(savedUser){
+      dispatch(setAuthedUser(savedUser))
+    }
     dispatch(showLoading())
     const users = await _getUsers()
     const questions = await _getQuestions()

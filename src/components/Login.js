@@ -71,7 +71,8 @@ const Login = () => {
   };
 
   const onSubmit = (e) => {
-    dispatch(setAuthedUser(userId));
+    localStorage.setItem("authedUser", userId)
+    dispatch(setAuthedUser(userId))
     setToHome(true);
   };
 
