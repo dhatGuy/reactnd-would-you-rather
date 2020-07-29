@@ -46,8 +46,7 @@ const Question = ({ match }) => {
   const { id } = match.params;
 
   if (isEmpty(users)) return null;
-  console.log(questions[id].optionTwo.votes, questions[id].optionOne.votes);
-
+  
   return (
     <>
       {questions[id] === undefined ? (
@@ -68,6 +67,7 @@ const Question = ({ match }) => {
                 <ResultCard
                   optionOne={questions[id].optionOne}
                   optionTwo={questions[id].optionTwo}
+                  authedUser={authedUser}
                 />
               ) : (
                 <QuestionCard

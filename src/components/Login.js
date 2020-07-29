@@ -3,46 +3,90 @@ import { useSelector, useDispatch } from "react-redux";
 import styled from "styled-components";
 import { setAuthedUser } from "../actions/authedUser";
 import { Link, Redirect } from "react-router-dom";
+import redux from "../images/redux.svg"
 
-const User = styled.div``;
+const Header = styled.h6`
+  text-align: center;
+  width: 100%;
+  border-bottom: 1px solid black;
+  background-color: #31867d;
+`;
+const LoginContainer = styled.div`
+  width: 80%;
+  margin: 0 auto;
+  margin-top: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  border: 1px solid black;
+`;
+const LoginHeader = styled.h3`
+`;
 const Img = styled.img`
   width: 100px;
   height: 100px;
 `;
 
 const Form = styled.form`
-  border: 1px solid black;
   display: flex;
-  flex-direction: column
+  flex-direction: column;
+  align-items: center;
+  padding: 5px;
+  width: 100%;
+
+  > * {
+    margin-bottom: 5px;
+  }
+
+  .link{
+    width: 100%;
+  }
+`;
+
+const Select = styled.select`
+  width: 100%;
+`
+
+const Button = styled.button`
+  color: #d4eae6;
+  width: 100%;
+  background-color: #31867d;
+  border: none;
+
+  > * {
+  /* color: #31867d !important; */
+
+  }
 `
 
 const Login = () => {
   const users = useSelector((state) => state.users);
   const [userId, setUserId] = useState("");
-  const [toHome, setToHome] = useState(false)
+  const [toHome, setToHome] = useState(false);
   const dispatch = useDispatch();
 
   const handleChange = (e) => {
     setUserId(e.target.value);
-    console.log(e.target.value)
   };
 
   const onSubmit = (e) => {
     dispatch(setAuthedUser(userId));
-    console.log(users[userId])
-    setToHome(true)
+    setToHome(true);
   };
 
-  if(toHome) return <Redirect to="/" />
+  if (toHome) return <Redirect to="/" />;
 
   return (
     <>
-      <div className="header">Welcome</div>
-      <div className="login-container">
-        <div className="login-header">Login As</div>
-        <Form className="login-form">
-          <Img src={userId === "" ? "" : "./." + users[userId].avatarURL} />
-          <select
+      <LoginContainer>
+        <Header>
+          Welcome to Would You Rather App
+          <h6 className="login-header">Login As</h6>
+        </Header>
+        <Form >
+          <Img src={userId === "" ? redux :  users[userId].avatarURL} />
+          <Select
             value={userId}
             onChange={handleChange}
             name="users"
@@ -56,14 +100,14 @@ const Login = () => {
                 </option>
               );
             })}
-          </select>
-          <Link to="/">
-          <button onClick={onSubmit} disabled={userId === ""} type="submit">
-            Login
-          </button>
+          </Select>
+          <Link to="/" className="link">
+            <Button onClick={onSubmit} disabled={userId === ""} type="submit">
+              Login
+            </Button>
           </Link>
         </Form>
-      </div>
+      </LoginContainer>
     </>
   );
 };

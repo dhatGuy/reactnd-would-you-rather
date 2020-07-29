@@ -2,6 +2,9 @@ import { createGlobalStyle } from "styled-components";
 
 const GlobalStyle = createGlobalStyle`
   body {
+    background: #397298;
+    color: #d4eae6;
+    padding: 0;
     margin: 0;
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
       'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
@@ -11,6 +14,8 @@ const GlobalStyle = createGlobalStyle`
   }
   a {
     text-decoration: none;
+  color: #d4eae6;
+
   }
 
   .active{
