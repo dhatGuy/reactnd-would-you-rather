@@ -15,13 +15,25 @@ const GlobalStyle = createGlobalStyle`
   a {
     text-decoration: none;
   color: #d4eae6;
-
   }
 
+  a:hover{
+    text-decoration: none;
+    color: #fff;
+    border-bottom: 1px solid #d4eae6;
+  }
   .active{
-    background: green
+    border-bottom: 1px solid #d4eae6;
+    font-weight: bold;
   }
 
+  .tab-list {
+    border-bottom: 1px solid #aaa;
+    margin: 0 0 10px;
+    display: flex;
+    padding: 0;
+    justify-content: space-around;
+  }
   code {
     font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
       monospace;

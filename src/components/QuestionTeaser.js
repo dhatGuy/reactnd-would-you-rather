@@ -18,7 +18,7 @@ const Img = styled.img`
   width: 100px;
   height: 100px;
   padding-right: 5px;
-border-right: 3px solid #d4eae6;
+  border-right: 3px solid #d4eae6;
 `;
 
 const QuestionContainer = styled.div`
@@ -50,11 +50,12 @@ const QuestionTeaser = ({ id }) => {
   const isEmpty = (obj) => Object.keys(obj).length === 0;
   const questions = useSelector((state) => state.questions);
   const users = useSelector((state) => state.users);
-  const authedUser = useSelector(state=> state.authedUser)
+  const authedUser = useSelector((state) => state.authedUser);
 
   if (isEmpty(users) || isEmpty(questions)) return null;
-const isAnswered = questions[id].optionOne.votes.includes(authedUser) ||
-questions[id].optionTwo.votes.includes(authedUser)
+  const isAnswered =
+    questions[id].optionOne.votes.includes(authedUser) ||
+    questions[id].optionTwo.votes.includes(authedUser);
   const { author, optionOne } = questions[id];
   const { avatarURL } = users[author];
 
@@ -64,7 +65,7 @@ questions[id].optionTwo.votes.includes(authedUser)
       <Main>
         <Img src={avatarURL} alt="" />
         <QuestionContainer>
-          Would You Rather...
+          <h4>Would You Rather...</h4>
           <div>
             {optionOne.text} OR..
             <Link to={`/question/${id}`}>

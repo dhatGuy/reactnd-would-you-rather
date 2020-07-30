@@ -34,7 +34,7 @@ const Dashboard = (props) => {
   return (
     <div>
       <Tabs>
-        <TabList>
+        <TabList className="tab-list">
           <Tab>Unanswered Question</Tab>
           <Tab>Answered Questions</Tab>
         </TabList>

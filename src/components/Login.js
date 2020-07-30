@@ -13,7 +13,7 @@ const Header = styled.header`
   background-color: #31867d;
 `;
 const LoginContainer = styled.div`
-  width: 50%;
+  width: 80%;
   ${media.lessThan("small")`
     width: 90%
   `}
@@ -92,7 +92,8 @@ const Login = () => {
           <h6 className="login-header">Login As</h6>
         </Header>
         <Form >
-          <Img src={userId === "" ? redux :  users[userId].avatarURL} />
+          <Img alt="" src={userId === "" ? redux :  users[userId].avatarURL} />
+          <label htmlFor="users"></label>
           <Select
             value={userId}
             onChange={handleChange}

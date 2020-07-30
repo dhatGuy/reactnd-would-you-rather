@@ -8,6 +8,26 @@ import styled from "styled-components"
 const Form = styled.form`
   display: flex;
   flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 10px;
+  border: 3px solid #d4eae6;
+
+  .btn {
+    width: 100%;
+    background-color: #8ac4ff;
+    font-weight: bold;
+  }
+
+  label, input{
+    width: 100%;
+  }
+`
+
+const New = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 `
 
 const NewQuestion = (props) => {
@@ -51,20 +71,20 @@ const NewQuestion = (props) => {
   if(toHome) return <Redirect to="/" />
 
   return (
-    <div>
+    <New>
       <h2>Create New Question</h2>
       <Form className="">
-        <h4>Would you rather...</h4>
+        <h2>Would you rather...</h2>
         <label htmlFor="optionOne">
-          <input type="text" name="optionOne" id={1} onChange ={handleChange} value={options.optionOne}/>
+          <input type="text" placeholder="Use Redux" name="optionOne" id={1} onChange ={handleChange} value={options.optionOne}/>
         </label>
         <div>OR</div>
         <label htmlFor="optionTwo">
-          <input type="text" name="optionTwo" id={2} onChange ={handleChange} value={options.optionTwo}/>
+          <input type="text" placeholder="Use React Context API" name="optionTwo" id={2} onChange ={handleChange} value={options.optionTwo}/>
         </label>
-        <button onClick={handleSubmit}>Submit</button>
+        <button className="btn" onClick={handleSubmit}>Submit</button>
       </Form>
-    </div>
+    </New>
   )
 };
 

@@ -8,10 +8,10 @@ const Form = styled.form`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  padding-bottom: 5px;
+  padding: 5px;
 `;
 const Button = styled.button`
-  width: 95%;
+  width: 100%;
   background: #8ac4ff;
   border: none;
   padding: 2px 0;
@@ -41,7 +41,7 @@ const QuestionCard = ({authedUser, id, questions}) => {
   };
   return (
     <div>
-      <header>Would you rather...</header>
+      <h2>Would you rather...</h2>
       <Form onSubmit={handleSubmit}>
         <label htmlFor="optionOne">
           <input

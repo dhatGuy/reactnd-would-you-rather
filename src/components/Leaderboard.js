@@ -15,7 +15,7 @@ const ScoreCard = styled.div`
 
 const CardDetails = styled.div`
   border-left: 2px solid #d4eae6;
-  padding-left: 3px;
+  padding-left: 10px;
 `
 
 const TotalScore = styled.div`

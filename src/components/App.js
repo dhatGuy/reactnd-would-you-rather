@@ -14,6 +14,8 @@ import Nav from "./Nav";
 import NewQuestion from "./NewQuestion";
 import GlobalStyle from "../GlobalStyle";
 import Leaderboard from "./Leaderboard";
+import styled from "styled-components"
+import media from "styled-media-query"
 
 const App = () => {
   const dispatch = useDispatch();
@@ -22,8 +24,17 @@ const App = () => {
     dispatch(handleInitialData());
   }, [dispatch]);
 
+  const AppContainer = styled.div`
+    width: 50%;
+    margin: 0 auto;
+
+    ${media.lessThan("medium")`
+      width: 95%;
+    `}
+  `
+
   return (
-    <div>
+    <AppContainer>
       <GlobalStyle />
       <LoadingBar />
       <Router>
@@ -43,7 +54,7 @@ const App = () => {
           </>
         )}
       </Router>
-    </div>
+    </AppContainer>
   );
 };
 
