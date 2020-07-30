@@ -11,7 +11,7 @@ const Form = styled.form`
   padding-bottom: 5px;
 `;
 const Button = styled.button`
-  width: 98%;
+  width: 95%;
   background: #8ac4ff;
   border: none;
   padding: 2px 0;
@@ -51,7 +51,7 @@ const QuestionCard = ({authedUser, id, questions}) => {
             value="optionOne"
             onChange={handleChange}
           />
-          {questions[id].optionTwo.text}...
+          {questions[id].optionOne.text} ?
         </label>
         <label htmlFor="optionTwo">
           <input
@@ -61,7 +61,7 @@ const QuestionCard = ({authedUser, id, questions}) => {
             value="optionTwo"
             onChange={handleChange}
           />
-          {questions[id].optionOne.text}...
+          {questions[id].optionTwo.text} ?
         </label>
         <Button type="submit" disabled={value === ""}>
           Submit

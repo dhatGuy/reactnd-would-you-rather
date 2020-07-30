@@ -7,21 +7,22 @@ const QuestionCard = styled.div`
   margin: 5px;
   background: #397298;
   color: #fff;
-  padding: 10px 5px;
+  border: 3px solid #d4eae6;
 `;
 
 const QuestionHeader = styled.header`
-  /* margin: 10px 0; */
+  padding-left: 5px;
 `;
 
 const Img = styled.img`
   width: 100px;
   height: 100px;
+  padding-right: 5px;
+border-right: 3px solid #d4eae6;
 `;
 
 const QuestionContainer = styled.div`
   display: flex;
-  border-left: 1px solid black;
   flex-direction: column;
   padding-left: 5px;
   flex: 1 1 0;
@@ -29,9 +30,10 @@ const QuestionContainer = styled.div`
 
 const Main = styled.main`
   display: flex;
+  height: 100%;
   justify-content: space-between;
   align-items: flex-end;
-  border-top: 1px solid black;
+  border-top: 3px solid #d4eae6;
 `;
 
 const Button = styled.button`
@@ -41,7 +43,7 @@ const Button = styled.button`
   padding: 2px 0;
   font-size: 20px;
   align-self: center;
-  cursor: pointer;
+  margin-bottom: 5px;
 `;
 
 const QuestionTeaser = ({ id }) => {
@@ -64,7 +66,7 @@ questions[id].optionTwo.votes.includes(authedUser)
         <QuestionContainer>
           Would You Rather...
           <div>
-            ...{optionOne.text}...
+            {optionOne.text} OR..
             <Link to={`/question/${id}`}>
               <Button type="submit">{isAnswered ? "Results" : "View"}</Button>
             </Link>

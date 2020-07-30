@@ -5,14 +5,13 @@ import QuestionCard from "./QuestionCard";
 import ResultCard from "./ResultCard";
 
 const QuestionContainer = styled.div`
-  margin: 5px;
+  border: 3px solid whitesmoke;
   background: #397298;
   color: #fff;
-  padding: 10px 5px;
 `;
 
 const QuestionHeader = styled.header`
-  /* margin: 10px 0; */
+  padding-left: 5px;
 `;
 
 const ImgWrapper = styled.div`
@@ -26,7 +25,7 @@ const ImgWrapper = styled.div`
 
 const QuestionDiv = styled.div`
   display: flex;
-  border-left: 1px solid black;
+  border-left: 3px solid #d4eae6;
   flex-direction: column;
   padding-left: 5px;
   flex: 1 1 0;
@@ -36,6 +35,7 @@ const Main = styled.main`
   display: flex;
   justify-content: space-between;
   align-items: center;
+  border-top: 3px solid #d4eae6;
 `;
 
 const Question = ({ match }) => {

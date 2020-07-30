@@ -2,22 +2,30 @@ import React from "react";
 import { useSelector } from "react-redux";
 import styled from "styled-components";
 
-const Header = styled.header`
+const Header = styled.h1`
   text-align: center;
 `
 
 const ScoreCard = styled.div`
   display: flex;
-  align-items: center
+  align-items: center;
+  border: 3px solid #d4eae6;
+  margin-bottom: 10px;
 `
 
-const CardDetails = styled.div``
+const CardDetails = styled.div`
+  border-left: 2px solid #d4eae6;
+  padding-left: 3px;
+`
 
-const TotalScore = styled.div``
+const TotalScore = styled.div`
+  /* border-left:2px solid #d4eae6 */
+`
 
 const ImgContainer = styled.div`
   width: 100px;
   height: 100px;
+  margin-right: 5px;
 
   img{
     width: 100%
@@ -42,12 +50,12 @@ const Leaderboard = (props) => {
           </ImgContainer>
           <CardDetails className="details">
             <h3>{users[key].name}</h3>
-            <p>Answered Questions {users[key].questions.length}</p>
-            <p>Created Questions {Object.keys(users[key].answers).length}</p>
-          </CardDetails>
+            <p>Answered Que: {users[key].questions.length}</p>
+            <p>Created Que: {Object.keys(users[key].answers).length}</p>
           <TotalScore>
-            Total score: {users[key].questions.length + Object.keys(users[key].answers).length}
+            Total: {users[key].questions.length + Object.keys(users[key].answers).length}
           </TotalScore>
+          </CardDetails>
         </ScoreCard>
       ))}
     </div>

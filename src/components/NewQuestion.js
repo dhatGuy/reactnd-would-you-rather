@@ -3,7 +3,12 @@ import { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { handleSaveNewQuestion, } from "../actions/";
 import { Redirect } from "react-router-dom";
+import styled from "styled-components"
 // import { saveQuestionToUser } from "../actions/users";
+const Form = styled.form`
+  display: flex;
+  flex-direction: column;
+`
 
 const NewQuestion = (props) => {
   const [options, setOptions ] = useState({
@@ -47,9 +52,9 @@ const NewQuestion = (props) => {
 
   return (
     <div>
-      <header>Create New Question</header>
-      <div className="">
-        <h3>Would you rather...</h3>
+      <h2>Create New Question</h2>
+      <Form className="">
+        <h4>Would you rather...</h4>
         <label htmlFor="optionOne">
           <input type="text" name="optionOne" id={1} onChange ={handleChange} value={options.optionOne}/>
         </label>
@@ -58,7 +63,7 @@ const NewQuestion = (props) => {
           <input type="text" name="optionTwo" id={2} onChange ={handleChange} value={options.optionTwo}/>
         </label>
         <button onClick={handleSubmit}>Submit</button>
-      </div>
+      </Form>
     </div>
   )
 };

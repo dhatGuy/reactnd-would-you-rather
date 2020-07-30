@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import styled from "styled-components";
+import media from "styled-media-query"
 import { setAuthedUser } from "../actions/authedUser";
 import { useHistory } from "react-router-dom";
 import redux from "../images/redux.svg"
@@ -12,7 +13,10 @@ const Header = styled.header`
   background-color: #31867d;
 `;
 const LoginContainer = styled.div`
-  width: 80%;
+  width: 50%;
+  ${media.lessThan("small")`
+    width: 90%
+  `}
   margin: 0 auto;
   margin-top: 10px;
   display: flex;
@@ -21,8 +25,7 @@ const LoginContainer = styled.div`
   flex-direction: column;
   border: 1px solid black;
 `;
-// const LoginHeader = styled.h3`
-// `;
+
 const Img = styled.img`
   width: 100px;
   height: 100px;
@@ -56,6 +59,11 @@ const Button = styled.button`
 
 `
 
+const Logged = styled.h3`
+  margin-top: 50px;
+  text-align: center;
+`
+
 const Login = () => {
   const users = useSelector((state) => state.users);
   const [userId, setUserId] = useState("");
@@ -76,11 +84,11 @@ const Login = () => {
   return (
     <>
     {authedUser === false?
-     <div>You're already logged in</div> 
+     <Logged>You're already logged in</Logged> 
      :  
-      <LoginContainer>
+         <LoginContainer>
         <Header>
-          Welcome to Would You Rather App
+          <p>Welcome to Would You Rather App</p>
           <h6 className="login-header">Login As</h6>
         </Header>
         <Form >
@@ -104,7 +112,7 @@ const Login = () => {
               Login
             </Button>
         </Form>
-      </LoginContainer>
+  </LoginContainer>
   }
     </>
   );

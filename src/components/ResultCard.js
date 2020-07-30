@@ -3,8 +3,10 @@ import styled from "styled-components";
 import { ProgressBar } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
 
-const Header = styled.header``;
-const ProgressContainer = styled.div``;
+const Header = styled.h3``;
+const ProgressContainer = styled.div`
+  margin-right: 5px;
+`;
 
 const ResultCard = ({ optionOne, optionTwo, authedUser }) => {
   const total = optionOne.votes.length + optionTwo.votes.length;

@@ -3,12 +3,15 @@ import { NavLink } from "react-router-dom";
 import styled from "styled-components";
 import { useSelector, useDispatch } from "react-redux";
 import { setAuthedUser } from "../actions/authedUser";
+import media from "styled-media-query";
 
 const NavBar = styled.div`
   display: flex;
   justify-content: space-between;
   list-style: none;
   padding: 10px 5px;
+  margin-bottom: 5px;
+  border-bottom: 1px solid whitesmoke;
 `;
 const NavBarRight = styled.nav`
   display: flex;
@@ -25,6 +28,13 @@ const NavBarLeft = styled.nav`
   display: flex;
   justify-content: center;
   align-items: center;
+
+  ${media.lessThan("small")`
+    /* display: none */
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start
+  `}
 `;
 
 const NavBarLink = styled.li`
