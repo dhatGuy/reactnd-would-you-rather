@@ -1,73 +1,53 @@
-<<<<<<< HEAD
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# Would You Rather App
 
-## Available Scripts
+[![Netlify Status](https://api.netlify.com/api/v1/badges/5def95fb-5afa-4948-a41c-6d19048e5499/deploy-status)](https://app.netlify.com/sites/ndwouldyourather/deploys)
 
-In the project directory, you can run:
+This is the second project of three in Udacity's React Nanodegree.
 
-### `npm start`
+![screenshot-ndwouldyourather netlify app-2020 07 30-23_57_42](https://user-images.githubusercontent.com/51405947/88982832-3781dc80-d2c1-11ea-8917-594c6f283398.png)
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+![screenshot-ndwouldyourather netlify app-2020 07 31-00_04_23](https://user-images.githubusercontent.com/51405947/88982918-76b02d80-d2c1-11ea-9949-0c2cfc563d9e.png)
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+Built with
+- [React](https://reactjs.org)
+- [Redux](https://redux.js.org)
+- [React Router](https://reactrouter.com/)
+- [Styled Components](https://styled-components.com/)
 
-### `npm test`
+## Installation
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+Clone the repository
+```git
+> git clone https://github.com/dhatGuy/reactnd-would-you-rather.git
+> cd reactnd-would-you-rather 
+```
 
-### `npm run build`
+Run 
 
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
+``` npm
+> npm i
+``` 
 
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
+to install necessary dependencies.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## Usage
 
-### `npm run eject`
+```npm
+> npm start
+```
+View project in the browser at
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+```
+localhost:3000
+```
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## Live Preview
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+Visit [Would You Rather](https://ndwouldyourather.netlify.app)
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+## Contributing
+Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
 
-## Learn More
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
-
-### Analyzing the Bundle Size
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
-
-### Making a Progressive Web App
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `npm run build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
-=======
-# reactnd-would-you-rather
-Second Udacity Nanodegree Project
->>>>>>> 013ce443785246868e11adcdafbf74eaeebb0f89
+## License
+Distributed under the MIT License. See [LICENSE](https://github.com/dhatGuy/reactnd-would-you-rather/blob/master/LICENSE)  for more information.
