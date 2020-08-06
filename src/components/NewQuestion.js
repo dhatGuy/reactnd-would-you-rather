@@ -35,6 +35,7 @@ const NewQuestion = (props) => {
     optionOne: "",
     optionTwo: ""
   })
+  const {optionOne, optionTwo} = options
   const [toHome, setToHome] = useState(false)
   const dispatch = useDispatch()
   const authedUser = useSelector(state=> state.authedUser)
@@ -52,7 +53,6 @@ const NewQuestion = (props) => {
     }
   }
   const handleSubmit = () => {
-    const {optionOne, optionTwo} = options
     const question = {
       optionOneText:optionOne,
       optionTwoText:optionTwo,
@@ -82,7 +82,7 @@ const NewQuestion = (props) => {
         <label htmlFor="optionTwo">
           <input type="text" placeholder="Use React Context API" name="optionTwo" id={2} onChange ={handleChange} value={options.optionTwo}/>
         </label>
-        <button className="btn" onClick={handleSubmit}>Submit</button>
+        <button className="btn" onClick={handleSubmit} disabled={optionOne === "" || optionTwo === ""} >Submit</button>
       </Form>
     </New>
   )

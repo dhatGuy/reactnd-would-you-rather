@@ -29,7 +29,7 @@ const NavBarLeft = styled.nav`
   justify-content: center;
   align-items: center;
 
-  ${media.lessThan("medium")`
+  ${media.lessThan("large")`
     flex-direction: column;
     justify-content: flex-start;
     align-items: flex-start
