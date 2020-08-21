@@ -2,7 +2,8 @@
 
 [![Netlify Status](https://api.netlify.com/api/v1/badges/5def95fb-5afa-4948-a41c-6d19048e5499/deploy-status)](https://app.netlify.com/sites/ndwouldyourather/deploys)
 
-This is the second project of three in Udacity's React Nanodegree.
+This is the second project of three in Udacity's [React Nanodegree](https://www.udacity.com/course/react-nanodegree--nd019). This web app lets a user play the “Would You Rather?” game. The game goes like this: A user is asked a question in the form: “Would you rather [option A] or [option B] ?”. Answering "neither" or "both" is against the rules.
+Users will be able to answer questions, see which questions they haven’t answered, see how other people have voted, post questions, and see the ranking of users on the leaderboard.
 
 ![screenshot-ndwouldyourather netlify app-2020 07 30-23_57_42](https://user-images.githubusercontent.com/51405947/88982832-3781dc80-d2c1-11ea-8917-594c6f283398.png)
 
